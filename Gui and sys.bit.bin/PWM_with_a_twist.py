@@ -10,29 +10,6 @@ import mmap
 import struct
 from PyQt4 import QtCore, QtGui
 
-class TestWidget(QtGui.QWidget):
-  def __init__(self, parent):
-    super(QtGui.QWidget, self).__init__()
-    self.layout = QtGui.QVBoxLayout()
-    
-    #Initialize tab screen
-    self.tabs = QtGui.QTabWidget()
-    self.pwm_setup_tab = QtGui.QWidget()
-    self.tabs.resize(300,200)
-    
-    #Add tabs
-    self.tabs.addTab(self.pwm_setup_tab, "Test")
-    
-    # Create PWM Setup Tab tab
-    self.pwm_setup_tab.layout = QtGui.QVBoxLayout();
-    self.pwm_set_pushbutton = QtGui.QPushButton("Test")
-    self.pwm_setup_tab.layout.addWidget(self.pwm_set_pushbutton)
-    self.pwm_setup_tab.setLayout(self.pwm_setup_tab.layout)
-    
-    # Add widgets to overall layout
-    self.layout.addWidget(self.tabs)
-    self.setLayout(self.layout)
-
 class MyPWMWidget(QtGui.QWidget):
   def __init__(self, parent):
     super(QtGui.QWidget, self).__init__()
@@ -261,13 +238,11 @@ class MainWindow(QtGui.QMainWindow):
     
     # Name widgets
     self.PWM_widget = MyPWMWidget(self)
-    self.Test_Widget = TestWidget(self)
     
     # Layout
     widget = QtGui.QWidget()
     vbox = QtGui.QHBoxLayout(widget)
     vbox.addWidget(self.PWM_widget)
-    vbox.addWidget(self.Test_Widget)
     
     self.title = 'Gui Containing Tab with Labels and Text Boxes Prototype'
     self.showMaximized()
